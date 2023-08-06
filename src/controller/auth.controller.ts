@@ -19,13 +19,11 @@ export const Register = async (req: Request, res: Response) => {
  res.send(body);
 };
 
-export const Login = (req: Request, res: Response) => {
+export const Login = async (req: Request, res: Response) => {
  const body = req.body;
  const {email, password} = body;
  
- loginUser(process.env.DB_TABLE1, email, password, res)
-  .then((result: any) => {
-  });
+ await loginUser(process.env.DB_TABLE1, email, password, res);
 };
 
 export const AuthenticatedUser = (req: Request, res: Response) => {
