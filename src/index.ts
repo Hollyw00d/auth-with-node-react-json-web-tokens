@@ -1,20 +1,14 @@
-import express, {Request, Response, NextFunction} from 'express';
-import mysql, { ResultSetHeader, RowDataPacket } from 'mysql2';
+import express from 'express';
 import 'dotenv/config'
+import {routes} from './routes';
+import {pool} from './model/db.connect';
 
 const app = express();
 app.use(express.json());
 
-const pool = mysql.createPool({
- host: process.env.DB_HOST,
- user: process.env.DB_USER,
- password: process.env.DB_PASSWORD,
- database: process.env.DB_NAME
-}).promise();
+pool;
 
-app.get('/', (req: Request, res: Response) => {
- res.send('Hello');
-});
+routes(app);
 
 app.listen(8000, () => {
  console.log(`Listening to port 8000\nHomepage at: http://localhost:8000/`);
