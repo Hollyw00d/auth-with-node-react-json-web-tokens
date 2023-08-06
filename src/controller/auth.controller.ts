@@ -56,12 +56,9 @@ export class Controllers {
 
   async authenticatedUser(req: Request, res: Response) {
     try {
-      const access_token_cookie = req.cookies['access_token'];
-    
+      const access_token_cookie = req.cookies['access_token'];      
       const payload: any = jsonwebtoken.verify(access_token_cookie, process.env.ACCESS_SECRET ?? '');
       
-      console.log(access_token_cookie);
-    
       if(!payload) {
       return res.status(401).send({
         message: 'Unauthenticated'
@@ -69,20 +66,18 @@ export class Controllers {
       } 
     
       const user = await models.findUserById(process.env.DB_TABLE1, payload.id);
-
-      console.log('below !payload');
     
       if(user === false) {
-      return res.status(400).send({
-        message: 'Unauthenticated'
-      });
+        return res.status(400).send({
+          message: 'Unauthenticated'
+        });
       }
     
       res.send(user);
     } catch(err) {
-    return res.status(400).send({
-      message: 'Unauthenticated'
-    });
+      return res.status(400).send({
+        message: 'Unauthenticated'
+      });
     }
   }
 
@@ -100,7 +95,7 @@ export class Controllers {
 
       const accessToken = jsonwebtoken.sign({
         id: payload.id
-      }, process.env.REFRESH_SECRET ?? '', {expiresIn: '30s'});
+      }, process.env.ACCESS_SECRET ?? '', {expiresIn: '30s'});
 
       res.cookie('access_token', accessToken, {
         httpOnly: true,
@@ -110,7 +105,6 @@ export class Controllers {
       res.send({
         message: 'Success'
       });
-
     } catch(err) {
     return res.status(400).send({
       message: 'Unauthenticated'
