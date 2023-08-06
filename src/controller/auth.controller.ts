@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import jsonwebtoken from 'jsonwebtoken';
 import {createUser} from '../model/crud/create.user';
-import { loginUser } from '../model/crud/login.user';
+import { loginAndFindId } from '../model/crud/login-and-return-id.user';
 import { findUserById } from '../model/crud/find-by-id.user';
 
 export const Register = async (req: Request, res: Response) => {
@@ -24,7 +24,36 @@ export const Login = async (req: Request, res: Response) => {
  const body = req.body;
  const {email, password} = body;
  
- await loginUser(process.env.DB_TABLE1, email, password, res);
+ const userId = await loginAndFindId(process.env.DB_TABLE1, email, password, res);
+
+  if(userId === false) {
+    return res.status(400).send({
+      message: 'Invalid credentials'
+     });
+  }
+
+  const accessToken = jsonwebtoken.sign({
+    id: userId
+  }, process.env.ACCESS_SECRET ?? '', {expiresIn: '30s'});
+
+  const refreshToken = jsonwebtoken.sign({
+    id: userId
+  }, process.env.REFRESH_SECRET ?? '', {expiresIn: '1w'});
+
+  res.cookie('access_token', accessToken, {
+    httpOnly: true,
+    maxAge: 24*60*60*1000 // 1 day
+  });
+
+  res.cookie('refresh_token', refreshToken, {
+    httpOnly: true,
+    maxAge: 7*24*60*60*1000 // 7 days
+  });
+
+  return res.send({
+    message: 'Success'
+  });
+
 };
 
 export const AuthenticatedUser = async (req: Request, res: Response) => {
@@ -90,5 +119,4 @@ export const Refresh = async (req: Request, res: Response) => {
     message: 'Unauthenticated'
    });
   }
-
 };
