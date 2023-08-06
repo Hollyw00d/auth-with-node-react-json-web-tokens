@@ -1,7 +1,6 @@
 import express, {Request, Response, NextFunction} from 'express';
 import mysql, { ResultSetHeader, RowDataPacket } from 'mysql2';
 import 'dotenv/config'
-import { error } from 'console';
 
 const app = express();
 app.use(express.json());
