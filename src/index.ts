@@ -25,11 +25,11 @@ async function getNote(id: number) {
  return (rows as RowDataPacket[])[0];
 }
 
-async function createNote(title: string, content: string) {
+async function createNote(title: string, contents: string) {
  const [result] = await pool.query(`
  INSERT INTO notes (title, contents)
  VALUES (?, ?)
- `, [title, content]);
+ `, [title, contents]);
  const id: number = (result as ResultSetHeader).insertId;
 
  return getNote(id);
@@ -62,7 +62,22 @@ getNotes()
  .then((notes) => {
   res.send(notes);
  });
+});
 
+app.get('/notes/:id', async (req: Request, res: Response) => {
+ const id: number = +(req.params.id);
+ getNote(id)
+  .then((note) => {
+   res.send(note);
+  });
+});
+
+app.post('/notes', async (req: Request, res: Response) => {
+ const {title, contents} = req.body;
+ createNote(title, contents)
+ .then((result) => {
+  res.status(201).send(result);
+ });
 });
 
 app.listen(8000, () => {
