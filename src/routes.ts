@@ -1,9 +1,10 @@
 import {Router} from 'express';
-import {Register, Login, AuthenticatedUser, Refresh} from './controller/auth.controller';
+import {Controllers} from './controller/auth.controller';
+const controllers = new Controllers();
 
 export const routes = (router: Router) => {
- router.post('/api/register', Register);
- router.post('/api/login', Login);
- router.get('/api/user', AuthenticatedUser);
- router.post('/api/refresh', Refresh);
+ router.post('/api/register', controllers.register);
+ router.post('/api/login', controllers.login);
+ router.get('/api/user', controllers.authenticatedUser);
+ router.post('/api/refresh', controllers.refresh);
 };
