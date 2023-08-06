@@ -7,7 +7,7 @@ export async function findUserById(db_name: any, id: any) {
    SELECT * FROM ${db_name} WHERE id = ?
   `, [id]);
 
-  const getUserEmail = (user as RowDataPacket[])[0]?.email ?? undefined;
+  const getUserEmail = (user as RowDataPacket[])[0]?.email ?? '';
 
   if(getUserEmail === undefined) {
      return false;
