@@ -1,8 +1,7 @@
 import {Request, Response} from 'express';
 import jsonwebtoken from 'jsonwebtoken';
-import {createUser} from '../model/crud/create.user';
-import { loginAndFindId } from '../model/crud/login-and-return-id.user';
-import { findUserById } from '../model/crud/find-by-id.user';
+import { Models } from '../model/db.models';
+const models = new Models();
 
 export class Controllers {
   async register(req: Request, res: Response) {
@@ -15,7 +14,7 @@ export class Controllers {
       });
     }
 
-    await createUser(process.env.DB_TABLE1, first_name, last_name, email, password);
+    await models.createUser(process.env.DB_TABLE1, first_name, last_name, email, password);
 
     res.send(body);
   }
@@ -24,7 +23,7 @@ export class Controllers {
     const body = req.body;
     const {email, password} = body;
     
-    const userId = await loginAndFindId(process.env.DB_TABLE1, email, password, res);
+    const userId = await models.loginAndFindId(process.env.DB_TABLE1, email, password, res);
 
     if(userId === false) {
       return res.status(400).send({
@@ -69,7 +68,7 @@ export class Controllers {
       });
       } 
     
-      const user = await findUserById(process.env.DB_TABLE1, payload.id);
+      const user = await models.findUserById(process.env.DB_TABLE1, payload.id);
 
       console.log('below !payload');
     
