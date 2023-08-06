@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import 'dotenv/config';
-import {createUser} from './crud/create.user';
-import { loginUser } from './crud/login.user';
+import {createUser} from '../model/crud/create.user';
+import { loginUser } from '../model/crud/login.user';
 
 export const Register = (req: Request, res: Response) => {
 
