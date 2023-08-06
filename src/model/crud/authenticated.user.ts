@@ -1,7 +1,4 @@
-import bycryptjs from 'bcryptjs';
-import {sign, verify} from 'jsonwebtoken';
-import { RowDataPacket } from 'mysql2';
-import {pool} from '../../model/db.connect';
+import {verify} from 'jsonwebtoken';
 import { findUserById } from './find-by-id.user';
 
 export async function authenticatedUser(access_token_cookie: any, res: any) {
