@@ -1,6 +1,7 @@
-import express, {Request, Response} from 'express';
+import express, {Request, Response, NextFunction} from 'express';
 import mysql, { ResultSetHeader, RowDataPacket } from 'mysql2';
 import 'dotenv/config'
+import { error } from 'console';
 
 const app = express();
 app.use(express.json());
@@ -78,6 +79,10 @@ app.post('/notes', async (req: Request, res: Response) => {
  .then((result) => {
   res.status(201).send(result);
  });
+});
+
+app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
+ res.status(500).send('Something broke!');
 });
 
 app.listen(8000, () => {
