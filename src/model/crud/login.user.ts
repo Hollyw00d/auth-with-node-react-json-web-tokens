@@ -8,8 +8,8 @@ export async function loginUser(db_name: any, email: string, password: string, r
    SELECT * FROM ${db_name} WHERE email = ?
   `, [email]);
 
-  const getUserEmail = (user as RowDataPacket[])[0]?.email ?? '';
-  const getUserPassword = (user as RowDataPacket[])[0]?.password ?? '';
+  const getUserEmail = (user as RowDataPacket[])[0]?.email ?? undefined;
+  const getUserPassword = (user as RowDataPacket[])[0]?.password ?? undefined;
 
   const userPwValid = await bycryptjs.compare(password, getUserPassword);
 

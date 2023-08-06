@@ -1,6 +1,7 @@
 import {Request, Response} from 'express';
 import {createUser} from '../model/crud/create.user';
 import { loginUser } from '../model/crud/login.user';
+import { authenticatedUser } from '../model/crud/authenticated.user';
 
 export const Register = (req: Request, res: Response) => {
 
@@ -27,4 +28,12 @@ export const Login = (req: Request, res: Response) => {
  loginUser(process.env.DB_TABLE1, email, password, res)
   .then((result: any) => {
   });
+};
+
+export const AuthenticatedUser = (req: Request, res: Response) => {
+  const cookie = req.cookies['access_token'];
+
+  authenticatedUser(cookie, res)
+    .then((result: any) => {
+    });
 };
