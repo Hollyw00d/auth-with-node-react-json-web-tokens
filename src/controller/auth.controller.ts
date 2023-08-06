@@ -111,4 +111,17 @@ export class Controllers {
     });
     }
   }
+
+  async logout(req: Request, res: Response) {
+    res.cookie('access_token', '', {
+      maxAge: 0
+    });
+    res.cookie('refresh_token', '', {
+      maxAge: 0
+    });
+
+    res.send({
+      message: 'Success'
+    });
+  }
 }
