@@ -3,7 +3,7 @@ import {createUser} from '../model/crud/create.user';
 import { loginUser } from '../model/crud/login.user';
 import { authenticatedUser } from '../model/crud/authenticated.user';
 
-export const Register = (req: Request, res: Response) => {
+export const Register = async (req: Request, res: Response) => {
 
  const body = req.body;
  const {first_name, last_name, email, password, password_confirm} = body;
@@ -14,11 +14,9 @@ export const Register = (req: Request, res: Response) => {
   });
  }
 
- createUser(process.env.DB_TABLE1, first_name, last_name, email, password)
-  .then((result: any) => {
-  });
+ await createUser(process.env.DB_TABLE1, first_name, last_name, email, password);
 
-  res.send(body);
+ res.send(body);
 };
 
 export const Login = (req: Request, res: Response) => {
