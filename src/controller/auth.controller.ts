@@ -1,5 +1,4 @@
 import {Request, Response} from 'express';
-import 'dotenv/config';
 import {createUser} from '../model/crud/create.user';
 import { loginUser } from '../model/crud/login.user';
 

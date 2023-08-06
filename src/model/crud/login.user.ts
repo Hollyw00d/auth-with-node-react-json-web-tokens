@@ -1,4 +1,5 @@
 import bycryptjs from 'bcryptjs';
+import {sign} from 'jsonwebtoken';
 import {pool} from '../../model/db.connect';
 import { RowDataPacket } from 'mysql2';
 
@@ -20,6 +21,27 @@ export async function loginUser(db_name: any, email: string, password: string, r
 
   const getUser = (user as RowDataPacket[])[0];
   delete getUser.password;
+  const userId = getUser.id;
 
-  return res.send(getUser);
+  const accessToken = sign({
+    id: userId
+  }, process.env.ACCESS_SECRET ?? '', {expiresIn: '30s'});
+
+  const refreshToken = sign({
+    id: userId
+  }, process.env.REFRESH_SECRET ?? '', {expiresIn: '1w'});
+
+  res.cookie('access_token', accessToken, {
+    httpOnly: true,
+    maxAge: 24*60*60*1000 // 1 day
+  });
+
+  res.cookie('refresh_token', refreshToken, {
+    httpOnly: true,
+    maxAge: 7*24*60*60*1000 // 7 days
+  });
+
+  return res.send({
+    message: 'Success'
+  });
 }

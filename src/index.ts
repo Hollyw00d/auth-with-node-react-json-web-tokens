@@ -1,12 +1,14 @@
 import express from 'express';
-import 'dotenv/config'
+import cors from 'cors';
+import 'dotenv/config';
 import {routes} from './routes';
-import {pool} from './model/db.connect';
 
 const app = express();
 app.use(express.json());
-
-pool;
+app.use(cors({
+ origin: ['http://localhost:3000'],
+ credentials: true
+}));
 
 routes(app);
 
