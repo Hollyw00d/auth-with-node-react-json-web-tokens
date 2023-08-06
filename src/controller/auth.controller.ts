@@ -3,7 +3,7 @@ import jsonwebtoken from 'jsonwebtoken';
 import { Models } from '../model/db.models';
 const models = new Models();
 
-export class Controllers {
+export class AuthControllers {
   async register(req: Request, res: Response) {
     const body = req.body;
     const {first_name, last_name, email, password, password_confirm} = body;

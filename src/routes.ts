@@ -1,11 +1,14 @@
 import {Router} from 'express';
-import {Controllers} from './controller/auth.controller';
-const controllers = new Controllers();
+import {AuthControllers} from './controller/auth.controller';
+import { ForgotControllers } from './controller/forgot.controller';
+const authControllers = new AuthControllers();
+const forgotControllers = new ForgotControllers();
 
 export const routes = (router: Router) => {
- router.post('/api/register', controllers.register);
- router.post('/api/login', controllers.login);
- router.get('/api/user', controllers.authenticatedUser);
- router.post('/api/refresh', controllers.refresh);
- router.post('/api/logout', controllers.logout);
+ router.post('/api/register', authControllers.register);
+ router.post('/api/login', authControllers.login);
+ router.get('/api/user', authControllers.authenticatedUser);
+ router.post('/api/refresh', authControllers.refresh);
+ router.post('/api/logout', authControllers.logout);
+ router.post('/api/forgot', forgotControllers.forgot);
 };
