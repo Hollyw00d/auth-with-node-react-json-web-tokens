@@ -1,5 +1,5 @@
 import bycryptjs from 'bcryptjs';
-import {sign} from 'jsonwebtoken';
+import jsonwebtoken from 'jsonwebtoken';
 import {pool} from '../../model/db.connect';
 import { RowDataPacket } from 'mysql2';
 
@@ -23,11 +23,11 @@ export async function loginUser(db_name: any, email: string, password: string, r
   delete getUser.password;
   const userId = getUser.id;
 
-  const accessToken = sign({
+  const accessToken = jsonwebtoken.sign({
     id: userId
   }, process.env.ACCESS_SECRET ?? '', {expiresIn: '30s'});
 
-  const refreshToken = sign({
+  const refreshToken = jsonwebtoken.sign({
     id: userId
   }, process.env.REFRESH_SECRET ?? '', {expiresIn: '1w'});
 
