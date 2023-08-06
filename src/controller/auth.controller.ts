@@ -1,7 +1,8 @@
 import {Request, Response} from 'express';
+import {verify} from 'jsonwebtoken';
 import {createUser} from '../model/crud/create.user';
 import { loginUser } from '../model/crud/login.user';
-import { authenticatedUser } from '../model/crud/authenticated.user';
+import { findUserById } from '../model/crud/find-by-id.user';
 
 export const Register = async (req: Request, res: Response) => {
 
@@ -26,10 +27,30 @@ export const Login = async (req: Request, res: Response) => {
  await loginUser(process.env.DB_TABLE1, email, password, res);
 };
 
-export const AuthenticatedUser = (req: Request, res: Response) => {
-  const cookie = req.cookies['access_token'];
-
-  authenticatedUser(cookie, res)
-    .then((result: any) => {
-    });
+export const AuthenticatedUser = async (req: Request, res: Response) => {
+  try {
+    const access_token_cookie = req.cookies['access_token'];
+  
+    const payload: any = verify(access_token_cookie, process.env.ACCESS_SECRET ?? '');
+  
+    if(!payload) {
+     return res.status(401).send({
+      message: 'Unauthenticated'
+     });
+    } 
+  
+    const user = await findUserById(process.env.DB_TABLE1, payload.id);
+  
+    if(user === false) {
+     return res.status(400).send({
+      message: 'Unauthenticated'
+     });
+    }
+  
+    res.send(user);
+  } catch(err) {
+   return res.status(400).send({
+    message: 'Unauthenticated'
+   });
+  }
 };

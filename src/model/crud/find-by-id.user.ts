@@ -9,7 +9,7 @@ export async function findUserById(db_name: any, id: any) {
 
   const getUserEmail = (user as RowDataPacket[])[0]?.email ?? '';
 
-  if(getUserEmail === undefined) {
+  if(!getUserEmail) {
      return false;
   }
   
