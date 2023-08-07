@@ -23,7 +23,7 @@ export class AuthControllers {
     const body = req.body;
     const {email, password} = body;
     
-    const userId = await models.loginAndFindId(process.env.DB_TABLE1, email, password, res);
+    const userId = await models.loginAndFindId(process.env.DB_TABLE1, email, password);
 
     if(userId === false) {
       return res.status(400).send({
