@@ -7,7 +7,7 @@
 ## Installation
 - To install npm packages do:
   `npm i`
-- After that need to create an __.env__ file with the following code where `DB_TABLE1` will refer to a `user` table and `DB_TABLE2` will refer to a `reset` table (this is a reset password log table):
+- After that need to create an __.env__ file with the following code where `DB_TABLE1` will refer to a `user` table and `DB_TABLE2` will refer to a `reset` table (this is a reset password log table) and obviously change the `YOUR_INFO_HERE` text to your values:
   ```
   DB_HOST=127.0.0.1
   DB_USER=YOUR_INFO_HERE
