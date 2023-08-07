@@ -7,7 +7,7 @@
 ## Installation
 - To install npm packages do:
   `npm i`
-- After that need to create an __.env__ file with the following code where `DB_TABLE1` will refer to a `user` table and `DB_TABLE2` will refer to a `reset` table (this is a reset password log table) and obviously change the `YOUR_INFO_HERE` text to your values:
+- After that need to create an __.env__ file with the following code where `DB_TABLE1` will refer to a `user` table and `DB_TABLE2` will refer to a `reset` table (this is a reset password log table) and obviously change the `YOUR_INFO_HERE` text to your values (__and all values below must be unique!__):
   ```
   DB_HOST=127.0.0.1
   DB_USER=YOUR_INFO_HERE
@@ -31,3 +31,59 @@
   USE node_auth;
   SET autocommit=0 ; SOURCE ~/Downloads/node_auth.sql ; COMMIT ;
   ```  
+
+## How to Use Locally
+Assuming that your MySQL database is running locally and you `node_auth` database has been restored (see above):
+- Install [Postman](https://www.postman.com/downloads/)
+- Install and run [MailHog](https://github.com/mailhog/MailHog) ([see Windows setup instructions - 5 min YouTube video](https://www.youtube.com/watch?v=Vv-T-XK5WjI))
+- Open another terminal window at the root of this project and run:
+  `npm start`
+- Open Postman and:
+  - To test add a new user:
+    - Add `http://localhost:8000/api/register` in the __URL__ field and choose __POST__ in the drop-down to the left 
+    - Under the box below, click on the __Body__ tab, click on the __raw__ radio button, and choose __JSON__ in the drop-down (to the right of the __raw__ radio button)
+    - Add the text below in text field under the __raw__ radio button:
+    ```
+    {
+      "first_name": "xyz",
+      "last_name": "xyz",
+      "email": "xyz@xyz.com",
+      "password": "xyz",
+      "password_confirm": "a"
+    }
+    ```
+    - Click the __Send__ button (to the right of the __URL__ field) and in the __Body__ tab you should see:
+      - __Status: 400 Bad Request__ text on the right
+      - JSON output like below:
+      ```
+      {
+        "message": "Password's do not match"
+      }
+      ```
+    - Update the JSON text under the __raw__ radio button like below:
+    ```
+    {
+      "first_name": "xyz",
+      "last_name": "xyz",
+      "email": "xyz@xyz.com",
+      "password": "xyz",
+      "password_confirm": "xyz"
+    }
+    ```
+    - Now click the __Send__ button and you in the __Body__ tab you should see:
+      - __Status: 400 Bad Request__ text on the right
+      - JSON output like below:
+      ```
+      {
+        "first_name": "xyz",
+        "last_name": "xyz",
+        "email": "xyz@xyz.com",
+        "password": "xyz",
+        "password_confirm": "xyz"
+      }
+      ```
+      - Also in MySQL if you run the follow SQL queries one-by-one below you should see the user with the __xyz@xyz.com__ email added to the database:
+         ```
+         USE node_auth;
+         SELECT * FROM user;
+         ```
