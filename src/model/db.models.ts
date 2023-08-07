@@ -29,6 +29,22 @@ export class Models {
    return getUser;   
  }
 
+ async findResetByEmail(db_name: any, email: string) {
+    const [reset] = await pool.query(`
+    SELECT * FROM ${db_name} WHERE email = ?
+    AND id=(SELECT max(id) FROM ${db_name})`, [email]);
+
+   const getEmail = (reset as RowDataPacket[])[0]?.email ?? '';
+   
+   if(!getEmail) {
+      return false;
+   }
+
+   const getResetEntry = (reset as RowDataPacket[])[0];
+
+   return getResetEntry;
+ }
+
  async loginAndFindId(db_name: any, email: string, password: string, res: any) {
    const [user] = await pool.query(`
     SELECT * FROM ${db_name} WHERE email = ?
@@ -48,5 +64,11 @@ export class Models {
    const userId = getUser.id;
 
    return userId;
+ }
+
+ async createResetEntry(db_name: any, email: string, token: string) {
+  await pool.query(`
+   INSERT INTO ${db_name} (email, token) VALUES (?, ?)
+  `, [email, token]);
  }
 }
