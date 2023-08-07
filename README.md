@@ -2,7 +2,7 @@
 ## Intro
 - This is the start of a Node.js login app that reads and writes data to a MySQL DB and it currently uses:
    - The [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) npm package for authentication
-   - It doesn't use React but that will be added in the future
+   - It doesn't use React now but that will be added in the future
 
 ## Installation
 - To install npm packages do:
