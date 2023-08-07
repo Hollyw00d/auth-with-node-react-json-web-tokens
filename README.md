@@ -38,8 +38,8 @@ Assuming that your MySQL database is running locally and you `node_auth` databas
 - Install and run [MailHog](https://github.com/mailhog/MailHog) ([see Windows setup instructions - 5 min YouTube video](https://www.youtube.com/watch?v=Vv-T-XK5WjI))
 - Open another terminal window at the root of this project and run:
   `npm start`
-- Open Postman and:
-  - To test add a new user:
+- Open Postman and below are steps to test:
+  - __Add a new user:__
     - Add `http://localhost:8000/api/register` in the __URL__ field and choose __POST__ in the drop-down to the left 
     - Under the box below, click on the __Body__ tab, click on the __raw__ radio button, and choose __JSON__ in the drop-down (to the right of the __raw__ radio button)
     - Add the text below in text field under the __raw__ radio button:
@@ -87,3 +87,43 @@ Assuming that your MySQL database is running locally and you `node_auth` databas
          USE node_auth;
          SELECT * FROM user;
          ```
+  - __Log in as a user:__  
+    - Add `http://localhost:8000/api/login` in the __URL__ field and choose __POST__ in the drop-down to the left 
+    - Under the box below, click on the __Body__ tab, click on the __raw__ radio button, and choose __JSON__ in the drop-down (to the right of the __raw__ radio button)
+    - Add the text below in text field under the __raw__ radio button:
+    ```
+    {
+      "email": "xyz@xyz.com",
+      "password": "xyz"
+    }
+    ```
+    - Now click the __Send__ button and you in the __Body__ tab you should see:
+    ```
+    {
+      "message": "Success"
+    }
+    ```
+    - If you did the steps above and password or email was wrong under the __Body__ tab you would see:
+    ```
+    {
+      "message": "Invalid credentials"
+    }    
+    ```
+- __Show logged in user in `get` route:__
+  - After running the steps for the `http://localhost:8000/api/login` route above, open another tab in Postman to run a __GET__ request on `http://localhost:8000/api/user` where you will see details for the user (excluding the password) you just logged in as
+  - __IMPORTANT NOTE:__ After you log using  `http://localhost:8000/api/login` you MUST send a __GET__ request in 30 seconds or less to see the user like below which will appear under the __Body__ tab:
+  ```
+  {
+    "id": 64,
+    "first_name": "xyz",
+    "last_name": "xyz",
+    "email": "xyz@xyz.com"
+  }
+  ```
+  - OR, you will see the message below (including after 30 seconds):
+  ```
+  {
+    "message": "Unauthenticated"
+  }
+  ``` 
+- See more routes at __src/routes.ts__ as more details will be coming to this README soon!   
