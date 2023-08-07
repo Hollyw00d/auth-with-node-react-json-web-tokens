@@ -39,7 +39,8 @@ Assuming that your MySQL database is running locally and you `node_auth` databas
 - Open another terminal window at the root of this project and run:
   `npm start`
 - Open Postman and below are steps to test:
-## Add a new user
+
+### Add a new user
 - Add `http://localhost:8000/api/register` in the __URL__ field and choose __POST__ in the drop-down to the left 
 - Under the box below, click on the __Body__ tab, click on the __raw__ radio button, and choose __JSON__ in the drop-down (to the right of the __raw__ radio button)
 - Add the text below in text field under the __raw__ radio button:
