@@ -1,4 +1,4 @@
-# The Ultimate Authentication Course with NodeJS and React (Udemy) by Antonio Papa
+# Basic Authorization App using Node.js, React, and JSON Web Tokens
 ## Intro
 - This is the start of a Node.js login app that reads and writes data to a MySQL DB and it currently uses:
    - The [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) npm package for authentication
