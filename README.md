@@ -4,7 +4,8 @@
    - The [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) npm package for authentication
    - It doesn't use React now but that will be added in the future
 
-## Installation
+## Node.js Setup
+- In your terminal go into the __node_auth__ folder
 - To install npm packages do:
   `npm i`
 - After that need to create an __.env__ file with the following code where `DB_TABLE1` will refer to a `user` table and `DB_TABLE2` will refer to a `reset` table (this is a reset password log table) and obviously change the `YOUR_INFO_HERE` text to your values (__and all values below must be unique!__):

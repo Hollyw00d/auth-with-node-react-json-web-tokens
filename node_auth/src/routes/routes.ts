@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import {AuthControllers} from './controller/auth.controller';
-import { ResetPasswordControllers } from './controller/reset-password.controller';
+import {AuthControllers} from '../controller/auth.controller';
+import { ResetPasswordControllers } from '../controller/reset-password.controller';
 const authControllers = new AuthControllers();
 const resetPasswordControllers = new ResetPasswordControllers();
 
