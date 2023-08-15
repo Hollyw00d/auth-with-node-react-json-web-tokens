@@ -4,7 +4,7 @@
       "env": {
         "node": true
       },
-      "files": "./node_auth/**/*.{ts,tsx}",
+      "files": "./node-auth/**/*.ts",
       "extends": [
         "airbnb",
         "airbnb-typescript",
@@ -12,11 +12,46 @@
         "plugin:prettier/recommended"
       ],
       "parserOptions": {
-        "project": "./tsconfig.json",
+        "project": "./node-auth/tsconfig.json",
         "sourceType": "module"
       },
       "rules": {
         "class-methods-use-this": "off"
+      }
+    },
+    {
+      "env": {
+        "browser": true,
+        "node": true
+      },
+      "files": "./react-auth/**/*.{ts,tsx}",
+      "extends": [
+        "airbnb",
+        "airbnb-typescript",
+        "plugin:jsx-a11y/recommended",
+        "prettier",
+        "plugin:prettier/recommended"
+      ],
+      "parserOptions": {
+        "project": "./react-auth/tsconfig.json",
+        "sourceType": "module"
+      },
+      "plugins": ["jsx-a11y"]
+    },
+    {
+      "env": {
+        "node": true
+      },
+      "files": "./react-auth/webpack/**/*.cjs",
+      "extends": ["airbnb", "prettier", "plugin:prettier/recommended"],
+      "plugins": ["commonjs"],
+      "rules": {
+        "semi": "error",
+        "commonjs/no-duplicate-exports": 2,
+        "import/no-extraneous-dependencies": "off",
+        "import/extensions": "off",
+        "import/no-dynamic-require": "off",
+        "global-require": "off"
       }
     }
   ],

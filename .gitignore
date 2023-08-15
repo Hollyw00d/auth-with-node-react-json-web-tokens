@@ -22,3 +22,6 @@ dist-ssr
 
 # Env variables
 .env
+
+# Custom files
+eslint-custom-conifg.json
