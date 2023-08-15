@@ -1,0 +1,28 @@
+{
+  "env": {},
+  "globals": {},
+  "parser": null,
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "plugins": ["json"],
+  "rules": {
+    "semi": ["error"],
+    "no-console": ["warn"],
+    "class-methods-use-this": ["off"],
+    "trailing-comma": ["off"],
+    "json/*": [
+      "error",
+      {
+        "allowComments": true
+      }
+    ]
+  },
+  "settings": {},
+  "ignorePatterns": [
+    "node_modules",
+    "build",
+    "package.json",
+    "package-lock.json"
+  ]
+}

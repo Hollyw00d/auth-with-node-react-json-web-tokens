@@ -7,9 +7,10 @@ const models = new Models();
 export default class AuthControllers {
   async register(req: Request, res: Response) {
     const { body } = req;
-    const { firstName, lastName, email, password, passwordConfirm } = body;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const { first_name, last_name, email, password, password_confirm } = body;
 
-    if (password !== passwordConfirm) {
+    if (password !== password_confirm) {
       return res.status(400).send({
         message: "Password's do not match"
       });
@@ -17,8 +18,8 @@ export default class AuthControllers {
 
     await models.createUser(
       process.env.DB_TABLE1,
-      firstName,
-      lastName,
+      first_name,
+      last_name,
       email,
       password
     );
