@@ -1,8 +1,8 @@
 import bycryptjs from 'bcryptjs';
 import { RowDataPacket } from 'mysql2';
-import { pool } from './db.connect';
+import pool from './db.connect';
 
-export class Models {
+export default class Models {
   // `user` table START
   async createUser(
     db_name: any,

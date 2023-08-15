@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import nodemailer from 'nodemailer';
 import { RowDataPacket } from 'mysql2';
-import { Models } from '../model/db.models';
+import Models from '../model/db.models';
 
 const models = new Models();
 
-export class ResetPasswordControllers {
+export default class ResetPasswordControllers {
   async forgot(req: Request, res: Response) {
     const { email } = req.body;
     const token = Math.random().toString(20).slice(2, 12);
@@ -37,15 +37,15 @@ export class ResetPasswordControllers {
       html: `Click <a href="${url}" target="_blank">here</a> to reset your password!`
     });
 
-    res.send({
+    return res.send({
       message: 'Please check your email!'
     });
   }
 
   async reset(req: Request, res: Response) {
-    const { token, password, password_confirm } = req.body;
+    const { token, password, passwordConfirm } = req.body;
 
-    if (password !== password_confirm) {
+    if (password !== passwordConfirm) {
       return res.status(400).send({
         message: "Password's do not match"
       });
@@ -81,7 +81,7 @@ export class ResetPasswordControllers {
       password
     );
 
-    res.send({
+    return res.send({
       message: `Password updated for user with email ${getUserEmail}!`
     });
   }

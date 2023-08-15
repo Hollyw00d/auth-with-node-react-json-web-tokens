@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import jsonwebtoken from 'jsonwebtoken';
-import { Models } from '../model/db.models';
+import Models from '../model/db.models';
 
 const models = new Models();
 

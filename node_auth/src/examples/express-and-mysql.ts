@@ -44,18 +44,18 @@ async function createNote(title: string, contents: string) {
 }
 
 getNotes().then((notes) => {
-  console.log('All notes!');
-  console.log(notes);
+  console.log('All notes!'); // eslint-disable-line no-console
+  console.log(notes); // eslint-disable-line no-console
 });
 
 getNote(1).then((note) => {
-  console.log('Single Note');
-  console.log(note);
+  console.log('Single Note'); // eslint-disable-line no-console
+  console.log(note); // eslint-disable-line no-console
 });
 
 createNote('My Important Note', 'Important Note Body').then((result) => {
-  console.log('View New Note');
-  console.log(result);
+  console.log('View New Note'); // eslint-disable-line no-console
+  console.log(result); // eslint-disable-line no-console
 });
 
 app.get('/', (req: Request, res: Response) => {
@@ -82,10 +82,11 @@ app.post('/notes', async (req: Request, res: Response) => {
   });
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
   res.status(500).send('Something broke!');
 });
 
 app.listen(8000, () => {
-  console.log('listening to port 8000');
+  console.log('listening to port 8000'); // eslint-disable-line no-console
 });
