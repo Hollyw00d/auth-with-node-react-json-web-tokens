@@ -14,8 +14,8 @@ export default function App() {
           <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
 
           <div>
-            <label htmlFor="floatingInput">
-              Email
+            <label htmlFor="floatingInput" className="position-relative w-100">
+              <span className="position-absolute indent-hide">Email</span>
               <input
                 type="email"
                 className="form-control"
@@ -24,9 +24,13 @@ export default function App() {
               />
             </label>
           </div>
+
           <div>
-            <label htmlFor="floatingPassword">
-              Password
+            <label
+              htmlFor="floatingPassword"
+              className="position-relative w-100"
+            >
+              <span className="position-absolute indent-hide">Password</span>
               <input
                 type="password"
                 className="form-control"
