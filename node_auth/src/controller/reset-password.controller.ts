@@ -43,9 +43,10 @@ export default class ResetPasswordControllers {
   }
 
   async reset(req: Request, res: Response) {
-    const { token, password, passwordConfirm } = req.body;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const { token, password, password_confirm } = req.body;
 
-    if (password !== passwordConfirm) {
+    if (password !== password_confirm) {
       return res.status(400).send({
         message: "Password's do not match"
       });
