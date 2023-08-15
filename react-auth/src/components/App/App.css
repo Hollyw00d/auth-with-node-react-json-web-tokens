@@ -1,3 +1,8 @@
 body {
-  padding: 50px;
+  background-color: rgb(248, 249, 250) !important;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 1rem;
 }
