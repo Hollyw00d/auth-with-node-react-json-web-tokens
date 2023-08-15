@@ -1,0 +1,28 @@
+{
+  "name": "auth-with-node-react-json-web-tokens",
+  "version": "1.0.0",
+  "description": "- This is the start of a Node.js login app that reads and writes data to a MySQL DB and it currently uses:    - The [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) npm package for authentication    - It doesn't use React now but that will be added in the future",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,css,scss,md}\"",
+    "lint": "eslint . --ignore-pattern package.json --ignore-pattern package-lock.json --ext .ts,.tsx,.js,.json",
+    "lintfix": "eslint . --ignore-pattern package.json --ignore-pattern package-lock.json --fix --ext .ts,.tsx,.js,.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.47.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-commonjs": "^1.0.2",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.0.1"
+  }
+}

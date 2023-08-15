@@ -1,0 +1,40 @@
+{
+  "overrides": [
+    {
+      "env": {
+        "node": true
+      },
+      "files": "./node_auth/**/*.{ts,tsx}",
+      "extends": [
+        "airbnb",
+        "airbnb-typescript",
+        "prettier",
+        "plugin:prettier/recommended"
+      ],
+      "parserOptions": {
+        "project": "./tsconfig.json",
+        "sourceType": "module"
+      },
+      "rules": {
+        "class-methods-use-this": "off"
+      }
+    }
+  ],
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "extends": ["plugin:json/recommended-with-comments"],
+  "rules": {
+    "semi": "error",
+    "no-console": "warn",
+    "class-methods-use-this": "off",
+    "trailing-comma": "off"
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "build",
+    "package.json",
+    "package-lock.json"
+  ]
+}
