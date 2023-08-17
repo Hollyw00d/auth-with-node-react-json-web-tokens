@@ -9,6 +9,8 @@ import Utils from './utils/Utils';
 const utils = new Utils();
 const dirname = utils.getDirRootPath();
 
+console.log(process.env.NODE_ENV);
+
 const app = express();
 app.use(express.json());
 app.use(cookieParser());

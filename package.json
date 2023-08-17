@@ -8,8 +8,8 @@
     "lint": "eslint . --ignore-pattern package.json --ignore-pattern package-lock.json --ext .ts,.tsx,.js,.cjs,.json",
     "lintfix": "eslint . --ignore-pattern package.json --ignore-pattern package-lock.json --fix --ext .ts,.tsx,.js,.json",
     "printlint": "eslint --print-config file.js > eslint-custom-conifg.json",
-    "startndev": "nodemon ./node-auth/src/index.ts",
-    "startnprod": "npx ts-node ./node-auth/src/index.ts",
+    "startndev": "cross-env NODE_ENV=dev nodemon ./node-auth/src/index.ts",
+    "startnprod": "cross-env NODE_ENV=prod npx ts-node ./node-auth/src/index.ts",
     "buildr": "webpack --config react-auth/webpack/webpack.config.cjs --env env=prod",
     "startrdev": "webpack serve --config react-auth/webpack/webpack.config.cjs --env env=dev --open"
   },
@@ -36,6 +36,7 @@
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
     "babel-loader": "^9.1.3",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
     "eslint": "^8.47.0",
     "eslint-config-airbnb": "^19.0.4",
