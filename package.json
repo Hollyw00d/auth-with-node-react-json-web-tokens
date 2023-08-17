@@ -1,7 +1,7 @@
 {
   "name": "auth-with-node-react-json-web-tokens",
   "version": "1.0.0",
-  "description": "- This is the start of a Node.js login app that reads and writes data to a MySQL DB and it currently uses:    - The [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) npm package for authentication    - It doesn't use React now but that will be added in the future",
+  "description": "- This is the start of a Node.js login app that reads and writes data to a MySQL DB and it currently uses:    - The [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) npm package for authentication    - It also uses React",
   "main": "index.js",
   "scripts": {
     "format": "prettier --write \"**/*.{ts,tsx,js,json,css,scss,md}\"",
