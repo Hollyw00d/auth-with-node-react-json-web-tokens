@@ -11,7 +11,6 @@
     "startndev": "nodemon ./node-auth/src/index.ts",
     "startnprod": "npx ts-node ./node-auth/src/index.ts",
     "buildr": "webpack --config react-auth/webpack/webpack.config.cjs --env env=prod",
-    "buildropen": "npx live-server --open=react-auth/build/index.html",
     "startrdev": "webpack serve --config react-auth/webpack/webpack.config.cjs --env env=dev --open"
   },
   "type": "module",
