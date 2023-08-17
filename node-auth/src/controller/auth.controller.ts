@@ -1,8 +1,12 @@
+import path from 'path';
 import { Request, Response } from 'express';
 import jsonwebtoken from 'jsonwebtoken';
 import Models from '../model/db.models';
+import Utils from '../utils/Utils';
 
 const models = new Models();
+const utils = new Utils();
+const dirname = utils.getDirRootPath();
 
 export default class AuthControllers {
   async register(req: Request, res: Response) {
@@ -153,5 +157,9 @@ export default class AuthControllers {
     return res.send({
       message: 'Success'
     });
+  }
+
+  async homepage(req: Request, res: Response) {
+    res.sendFile(path.join(dirname, 'react-auth', 'build', 'index.html'));
   }
 }

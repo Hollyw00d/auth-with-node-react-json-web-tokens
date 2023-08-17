@@ -13,6 +13,7 @@ const routes = (router: Router) => {
   router.post('/api/logout', authControllers.logout);
   router.post('/api/forgot', resetPasswordControllers.forgot);
   router.post('/api/reset', resetPasswordControllers.reset);
+  router.get('*', authControllers.homepage);
 };
 
 export default routes;

@@ -1,8 +1,13 @@
+import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import routes from './routes/routes';
+import Utils from './utils/Utils';
+
+const utils = new Utils();
+const dirname = utils.getDirRootPath();
 
 const app = express();
 app.use(express.json());
@@ -13,6 +18,8 @@ app.use(
     credentials: true
   })
 );
+
+app.use(express.static(path.join(dirname, 'react-auth', 'build')));
 
 routes(app);
 
