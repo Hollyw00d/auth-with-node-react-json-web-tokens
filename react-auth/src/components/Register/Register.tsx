@@ -1,4 +1,6 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useState, useEffect } from 'react';
+import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 import Utilities from '../../utils/utilities';
 
 export default function Register() {
@@ -10,10 +12,34 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [redirect, setRedirect] = useState(false);
 
-  const submit = (e: SyntheticEvent) => {
+  const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
+
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    await axios
+      .post('http://localhost:8000/api/register', {
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password,
+        password_confirm: passwordConfirm
+      })
+      .then((response) => {
+        setRedirect(true);
+      })
+      .catch((error) => {
+        setRedirect(false);
+      });
+    /* eslint-enable */
   };
+
+  useEffect(() => {}, [redirect]);
+
+  if (redirect) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <div className="d-flex align-items-center py-4 bg-body-tertiary">
