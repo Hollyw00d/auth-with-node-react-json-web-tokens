@@ -17,21 +17,19 @@ export default function Register() {
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    await axios
-      .post('http://localhost:8000/api/register', {
+    /* eslint-disable @typescript-eslint/no-unused-vars, no-empty */
+
+    try {
+      await axios.post('http://localhost:8000/api/register', {
         first_name: firstName,
         last_name: lastName,
         email,
         password,
         password_confirm: passwordConfirm
-      })
-      .then((response) => {
-        setRedirect(true);
-      })
-      .catch((error) => {
-        setRedirect(false);
       });
+
+      setRedirect(true);
+    } catch (error: any) {}
     /* eslint-enable */
   };
 
