@@ -95,14 +95,14 @@ export default class AuthControllers {
       const user = await models.findUserById(process.env.DB_TABLE1, payload.id);
 
       if (user === false) {
-        return res.status(400).send({
+        return res.status(401).send({
           message: 'Unauthenticated'
         });
       }
 
       return res.send(user);
     } catch (err) {
-      return res.status(400).send({
+      return res.status(401).send({
         message: 'Unauthenticated'
       });
     }
@@ -140,7 +140,7 @@ export default class AuthControllers {
         message: 'Success'
       });
     } catch (err) {
-      return res.status(400).send({
+      return res.status(401).send({
         message: 'Unauthenticated'
       });
     }
