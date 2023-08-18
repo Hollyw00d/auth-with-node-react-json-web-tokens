@@ -16,14 +16,10 @@ export default function Login() {
 
     /* eslint-disable @typescript-eslint/no-unused-vars, no-empty */
     try {
-      await axios.post(
-        'http://localhost:8000/api/login',
-        {
-          email,
-          password
-        },
-        { withCredentials: true }
-      );
+      await axios.post('login', {
+        email,
+        password
+      });
       setRedirect(true);
     } catch (error: any) {}
     /* eslint-enable */

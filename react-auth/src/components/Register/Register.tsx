@@ -19,7 +19,7 @@ export default function Register() {
 
     /* eslint-disable @typescript-eslint/no-unused-vars, no-empty */
     try {
-      await axios.post('http://localhost:8000/api/register', {
+      await axios.post('register', {
         first_name: firstName,
         last_name: lastName,
         email,
