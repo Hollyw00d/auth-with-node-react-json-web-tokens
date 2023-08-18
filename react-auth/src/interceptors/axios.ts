@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true;
 axios.interceptors.response.use(
   (resp) => resp,
   async (error) => {
-    if (error.response.status === 401) {
+    if (error.response.status === 401 || error.response.status === 400) {
       const response = await axios.post('refresh', {});
 
       if (response.status === 200) {
