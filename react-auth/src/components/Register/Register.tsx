@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import Utilities from '../../utils/utilities';
 
 export default function Register() {
   const utils = new Utilities();
   const year = utils.getYear();
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  const submit = (e: SyntheticEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="d-flex align-items-center py-4 bg-body-tertiary">
       <main className="form-signin w-100 m-auto">
-        <form>
+        <form onSubmit={submit}>
           <h1 className="h3 mb-3 fw-normal">Please Register</h1>
 
           <div>
@@ -22,6 +32,7 @@ export default function Register() {
                 className="form-control"
                 id="firstname-register"
                 placeholder="Jane"
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </label>
           </div>
@@ -37,6 +48,7 @@ export default function Register() {
                 className="form-control"
                 id="lastname-register"
                 placeholder="Doe"
+                onChange={(e) => setLastName(e.target.value)}
               />
             </label>
           </div>
@@ -49,6 +61,7 @@ export default function Register() {
                 className="form-control"
                 id="email-register"
                 placeholder="name@example.com"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </label>
           </div>
@@ -64,6 +77,7 @@ export default function Register() {
                 className="form-control"
                 id="password-register"
                 placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </label>
           </div>
@@ -79,6 +93,7 @@ export default function Register() {
                 className="form-control"
                 id="password-confirm-register"
                 placeholder="Password Confirm"
+                onChange={(e) => setPasswordConfirm(e.target.value)}
               />
             </label>
           </div>
