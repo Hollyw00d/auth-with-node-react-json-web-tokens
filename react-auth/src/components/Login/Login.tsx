@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState, useEffect } from 'react';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import Utilities from '../../utils/utilities';
 
 export default function Login() {
@@ -63,17 +63,10 @@ export default function Login() {
             </label>
           </div>
 
-          <div className="form-check text-start my-3">
-            <label className="form-check-label" htmlFor="remember-me-login">
-              Remember me
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value="remember-me"
-                id="remember-me-login"
-              />
-            </label>
+          <div className="mb-3">
+            <Link to="/forgot">Forgot password?</Link>
           </div>
+
           <button className="btn btn-primary w-100 py-2" type="submit">
             Sign in
           </button>
