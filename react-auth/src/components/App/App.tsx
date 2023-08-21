@@ -7,6 +7,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Nav from '../Nav/Nav';
 import Forgot from '../Forgot/Forgot';
+import Reset from '../Reset/Reset';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<Forgot />} />
+        <Route path="/reset/:token" element={<Reset />} />
       </Routes>
     </>
   );
