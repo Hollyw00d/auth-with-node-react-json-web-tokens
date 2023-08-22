@@ -37,6 +37,7 @@ export default class Models {
 
     const getUser = (user as RowDataPacket[])[0];
     delete getUser.password;
+    delete getUser.tfa_secret;
 
     return getUser;
   }
@@ -60,6 +61,7 @@ export default class Models {
 
     const getUser = (user as RowDataPacket[])[0];
     delete getUser.password;
+    delete getUser.tfa_secret;
     const userId = getUser.id;
 
     return userId;
