@@ -1,4 +1,4 @@
-# Basic Authorization App using Node.js, React, and JSON Web Tokens
+# Basic Authorization App using Node.js, React, TypeScript, and JSON Web Tokens
 
 ## Intro
 
